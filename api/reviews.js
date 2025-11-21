@@ -1,3 +1,5 @@
+const fetch = require("node-fetch");
+
 module.exports = async (req, res) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Access-Control-Allow-Methods", "GET, OPTIONS");
@@ -20,7 +22,6 @@ module.exports = async (req, res) => {
 
   try {
     const apiKey = process.env.GOOGLE_API_KEY;
-    const fetch = require("node-fetch");
 
     const url = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeId}&fields=rating,user_ratings_total&key=${apiKey}`;
     const gRes = await fetch(url);
