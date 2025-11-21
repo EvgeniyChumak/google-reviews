@@ -1,11 +1,13 @@
 module.exports = async (req, res) => {
-  // CORS
-  res.setHeader("Access-Control-Allow-Origin", "*");
+  // CORS — echo origin
+  const origin = req.headers.origin || "*";
+  res.setHeader("Access-Control-Allow-Origin", origin);
   res.setHeader("Access-Control-Allow-Methods", "GET, OPTIONS");
-  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  res.setHeader("Vary", "Origin");
 
   if (req.method === "OPTIONS") {
-    return res.status(200).end();
+    return res.status(204).end();
   }
 
   const placeId = req.query.pid;
@@ -17,7 +19,7 @@ module.exports = async (req, res) => {
     });
   }
 
-  // No cache for testing — можно включить позже
+  // Пока без кеша
   res.setHeader("Cache-Control", "no-store");
 
   try {
@@ -25,7 +27,6 @@ module.exports = async (req, res) => {
 
     const url = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeId}&fields=rating,user_ratings_total&key=${apiKey}`;
 
-    // ⬇️ ВАЖНО: встроенный fetch (Node 18/20/22)
     const gRes = await fetch(url);
     const data = await gRes.json();
 
