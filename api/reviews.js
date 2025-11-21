@@ -1,11 +1,7 @@
 export default async function handler(req, res) {
-  const cors = () => {
-    res.setHeader("Access-Control-Allow-Origin", "*");
-    res.setHeader("Access-Control-Allow-Methods", "GET, OPTIONS");
-    res.setHeader("Access-Control-Allow-Headers", "Content-Type");
-  };
-
-  cors();
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "GET, OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
 
   if (req.method === "OPTIONS") {
     return res.status(200).end();
@@ -14,7 +10,7 @@ export default async function handler(req, res) {
   const placeId = req.query.pid;
 
   if (!placeId) {
-    cors();
+    res.setHeader("Access-Control-Allow-Origin", "*");
     return res.status(400).json({
       error: "pid_required",
       message: "You must provide ?pid=PLACE_ID",
@@ -35,21 +31,22 @@ export default async function handler(req, res) {
     const data = await gRes.json();
 
     if (data.status !== "OK") {
-      cors();
+      res.setHeader("Access-Control-Allow-Origin", "*");
       return res.status(400).json({
         error: data.status,
         message: data.error_message || "Failed to fetch place details",
       });
     }
 
-    cors();
+    res.setHeader("Access-Control-Allow-Origin", "*");
     return res.status(200).json({
       rating: data.result.rating,
       total: data.result.user_ratings_total,
     });
   } catch (err) {
     console.error("Google Reviews API Error:", err);
-    cors();
+
+    res.setHeader("Access-Control-Allow-Origin", "*");
     return res.status(500).json({
       error: "server_error",
       message: "Internal server error",
