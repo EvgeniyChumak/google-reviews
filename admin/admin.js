@@ -4,8 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const generateBtn = document.getElementById("generate-btn");
   const copyBtn = document.getElementById("copy-btn");
 
-  const BASE_URL =
-    "https://google-reviews-evgeniychumaks-projects.vercel.app/api/reviews";
+  const BASE_URL = "https://google-reviews-rho.vercel.app/api/reviews";
 
   generateBtn.addEventListener("click", () => {
     const pid = input.value.trim();
@@ -19,7 +18,12 @@ document.addEventListener("DOMContentLoaded", () => {
 <script defer>
 document.addEventListener("DOMContentLoaded", async () => {
   try {
-    const res = await fetch("${BASE_URL}?pid=${pid}");
+    const res = await fetch("${BASE_URL}?pid=${pid}", {
+      method: "GET",
+      mode: "cors",
+      headers: { "Accept": "application/json" }
+    });
+
     const data = await res.json();
 
     document.querySelector("[google-rating]").textContent = data.rating;
