@@ -1,5 +1,5 @@
 module.exports = async (req, res) => {
-  // CORS — echo origin
+  // CORS
   const origin = req.headers.origin || "*";
   res.setHeader("Access-Control-Allow-Origin", origin);
   res.setHeader("Access-Control-Allow-Methods", "GET, OPTIONS");
@@ -10,6 +10,7 @@ module.exports = async (req, res) => {
     return res.status(204).end();
   }
 
+  // ---- 1. Читаем place_id ----
   const placeId = req.query.pid;
 
   if (!placeId) {
@@ -19,8 +20,21 @@ module.exports = async (req, res) => {
     });
   }
 
-  // Пока без кеша
-  res.setHeader("Cache-Control", "no-store");
+  // ---- 2. Кэш на 7 дней, отдельно для каждого place_id ----
+  // Создаём ключ кэша уникальный для каждого placeId
+  res.setHeader(
+    "Cache-Control",
+    "s-maxage=604800, stale-while-revalidate=86400"
+  );
+  res.setHeader("Vary", "Origin, Query");
+
+  /*
+    ⚡ s-maxage=604800 — 7 дней хранится в Edge CDN
+    ⚡ stale-while-revalidate=86400 — если протухло → 24ч отдаётся старое,
+       а Vercel обновляет фоном
+    ⚡ Vary: Query → ДАННЫЕ КЭШИРУЮТСЯ ПОТ PLACE_ID!!!
+       То есть google?pid=AAA и google?pid=BBB будут иметь свой отдельный кеш.
+  */
 
   try {
     const apiKey = process.env.GOOGLE_API_KEY;
@@ -37,6 +51,7 @@ module.exports = async (req, res) => {
       });
     }
 
+    // ---- 3. Возвращаем данные (будут сохранены в кеш) ----
     return res.status(200).json({
       rating: data.result.rating,
       total: data.result.user_ratings_total,
