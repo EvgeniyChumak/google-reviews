@@ -1,6 +1,5 @@
-const fetch = require("node-fetch");
-
 module.exports = async (req, res) => {
+  // CORS
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Access-Control-Allow-Methods", "GET, OPTIONS");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
@@ -18,12 +17,15 @@ module.exports = async (req, res) => {
     });
   }
 
+  // No cache for testing — можно включить позже
   res.setHeader("Cache-Control", "no-store");
 
   try {
     const apiKey = process.env.GOOGLE_API_KEY;
 
     const url = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeId}&fields=rating,user_ratings_total&key=${apiKey}`;
+
+    // ⬇️ ВАЖНО: встроенный fetch (Node 18/20/22)
     const gRes = await fetch(url);
     const data = await gRes.json();
 
