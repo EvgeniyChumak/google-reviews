@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Marketer UX – Admin</title>
+  <link rel="stylesheet" href="style.css" />
+  
+</head>
+<body>
+  <header class="navbar">
+    <div class="logo">Marketer <span>UX</span></div>
+  </header>
+
+  <main class="container">
+    <h1>Google Reviews Script Generator</h1>
+
+    <label class="label">Place ID</label>
+    <input id="pid-input" class="input" type="text" placeholder="Enter place_id" />
+
+    <button id="generate-btn" class="btn">Generate Script</button>
+
+    <label class="label">Your Script</label>
+    <textarea id="result" class="textarea" readonly></textarea>
+
+    <button id="copy-btn" class="btn secondary">Copy</button>
+  </main>
+
+  <script src="admin.js"></script>
+</body>
+</html>
