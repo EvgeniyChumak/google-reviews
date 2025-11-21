@@ -3,6 +3,7 @@ body {
   background: #000;
   color: #fff;
   font-family: Arial, sans-serif;
+  overflow-x: hidden; /* убираем горизонтальный скролл */
 }
 
 .navbar {
@@ -16,6 +17,7 @@ body {
 .logo {
   font-size: 22px;
   font-weight: 700;
+  text-transform: uppercase; /* лого капсом */
 }
 
 .logo span {
@@ -57,6 +59,8 @@ body {
   border-radius: 6px;
   font-weight: 600;
   cursor: pointer;
+  color: #fff; /* белый текст у кнопок */
+  transition: 0.2s ease;
 }
 
 .btn.secondary {
@@ -65,5 +69,7 @@ body {
 }
 
 .btn:hover {
-  opacity: 0.9;
+  background: #fff;    /* белый фон */
+  color: #ff2b2b;      /* красный текст */
+  opacity: 1;          /* убрали затемнение */
 }
