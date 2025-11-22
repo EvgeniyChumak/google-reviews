@@ -3,7 +3,7 @@ body {
   background: #000;
   color: #fff;
   font-family: Arial, sans-serif;
-  overflow-x: hidden; /* убираем горизонтальный скролл */
+  overflow-x: hidden;
 }
 
 .navbar {
@@ -17,7 +17,7 @@ body {
 .logo {
   font-size: 22px;
   font-weight: 700;
-  text-transform: uppercase; /* лого капсом */
+  text-transform: uppercase;
 }
 
 .logo span {
@@ -28,6 +28,21 @@ body {
   max-width: 600px;
   margin: 40px auto;
   padding: 0 20px;
+}
+
+.helper {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #bbb;
+}
+
+.helper a {
+  color: #ff2b2b;
+  text-decoration: none;
+}
+
+.helper a:hover {
+  text-decoration: underline;
 }
 
 .label {
@@ -59,7 +74,7 @@ body {
   border-radius: 6px;
   font-weight: 600;
   cursor: pointer;
-  color: #fff; /* белый текст у кнопок */
+  color: #fff;
   transition: 0.2s ease;
 }
 
@@ -69,7 +84,7 @@ body {
 }
 
 .btn:hover {
-  background: #fff;    /* белый фон */
-  color: #ff2b2b;      /* красный текст */
-  opacity: 1;          /* убрали затемнение */
+  background: #fff;
+  color: #ff2b2b;
+  opacity: 1;
 }
