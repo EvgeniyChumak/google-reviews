@@ -32,30 +32,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     console.error("Google Reviews error:", err);
   }
 });
-</script>
-`;
+</script>`.trim();
 
-    const instructions = `
------------------------------
-✨ FINAL 2 STEPS:
-
-1) Copy the code above and paste it into:
-   - Project Settings → Custom Code → Before </body>
-     (if you need the rating on the entire website)
-   OR
-   - Page Settings → Custom Code → Before </body>
-     (if the rating is needed only on one page)
-
-2) Add attributes:
-   [google-rating]  – element that must contain the average rating  
-   [google-total]   – element that must contain the reviews count
-
-   Tip: If the text is inside a paragraph, wrap only the necessary part in <span>
-   and apply the attribute to that <span>.
------------------------------
-`;
-
-    result.value = script.trim() + "\n\n" + instructions.trim();
+    result.value = script;
   });
 
   copyBtn.addEventListener("click", () => {

@@ -88,3 +88,36 @@ body {
   color: #ff2b2b;
   opacity: 1;
 }
+
+.instructions {
+  margin-top: 25px;
+  padding: 18px;
+  background: #111;
+  border: 1px solid #222;
+  border-radius: 6px;
+  font-size: 14px;
+  color: #ccc;
+  line-height: 1.5;
+}
+
+.instructions h3 {
+  margin: 0 0 10px;
+  font-size: 16px;
+  color: #ff2b2b;
+  text-transform: uppercase;
+}
+
+.instructions ol {
+  padding-left: 18px;
+}
+
+.instructions li {
+  margin-bottom: 12px;
+}
+
+.instructions code {
+  background: #222;
+  padding: 2px 4px;
+  border-radius: 4px;
+  color: #ff2b2b;
+}

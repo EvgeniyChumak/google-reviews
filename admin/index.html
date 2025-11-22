@@ -17,8 +17,9 @@
 
     <p class="helper">
       You can find the Place ID of any business here:
-      <a href="https://developers.google.com/maps/documentation/places/web-service/place-id"
-         target="_blank">Google Place ID Finder</a>
+      <a href="https://developers.google.com/maps/documentation/places/web-service/place-id" target="_blank">
+        Google Place ID Finder
+      </a>
     </p>
 
     <label class="label">Place ID</label>
@@ -28,6 +29,27 @@
 
     <label class="label">Your Script</label>
     <textarea id="result" class="textarea" readonly></textarea>
+
+    <!-- ⭐ Инструкция -->
+    <div class="instructions">
+      <h3>Final 2 Steps</h3>
+      <ol>
+        <li>
+          Copy the generated code and paste it into:<br>
+          <strong>Project Settings → Custom Code → Before &lt;/body&gt;</strong>  
+          (if you need the rating on all pages)<br><br>
+          or<br><br>
+          <strong>Page Settings → Custom Code → Before &lt;/body&gt;</strong>  
+          (if you need the rating only on one page)
+        </li>
+
+        <li>
+          Add attributes <strong>[google-rating]</strong> and <strong>[google-total]</strong>  
+          to the elements that should display the rating and total reviews.<br><br>
+          Tip: wrap only the needed text in a <code>&lt;span&gt;</code> and place the attribute on it.
+        </li>
+      </ol>
+    </div>
 
     <button id="copy-btn" class="btn secondary">Copy</button>
   </main>
